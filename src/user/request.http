@@ -1,0 +1,51 @@
+### Get all user
+
+GET http://localhost:3000/api/v1/users
+content-type: application/json
+
+### Register user
+POST  http://localhost:3000/api/v1/users/register
+content-type: application/json
+
+{
+    "email": "test2@test.com",
+    "password": "test1234",
+    "firstName": "Van",
+    "lastName": "Nguyen"
+}
+
+### Login user
+POST  http://localhost:3000/api/v1/users/login
+content-type: application/json
+
+{
+    "email": "test2@test.com",
+    "password": "test1234"
+}
+
+### Logout user
+GET  http://localhost:3000/api/v1/users/logout
+content-type: application/json
+
+### Get current user
+GET  http://localhost:3000/api/v1/users/me
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoidGVzdDJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MywibmFtZSI6IkpPQl9TRUVLRVIifV0sImlhdCI6MTY4OTAwNzMxMywiZXhwIjoxNjg5MDY3MzEzfQ.cptpZke0iUfmG9l_aVE8hKD-WVvrK9GItdJy2mqOySg
+
+### Update user
+PATCH  http://localhost:3000/api/v1/users/1
+content-type: application/json
+
+{
+    "firstName": "Chinh",
+    "lastName": "Tuyet"
+}
+
+### Delete user
+DELETE  http://localhost:3000/api/v1/users/5
+content-type: application/json
+
+### Test user
+GET  http://localhost:3000/api/v1/users/test
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImlhdCI6MTY4OTAwMjIyNCwiZXhwIjoxNjg5MDYyMjI0fQ.CssyCNSLU7QeOGmWPa2CVsHH6m3HTU5cKs41k7m3dNE
