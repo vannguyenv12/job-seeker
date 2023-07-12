@@ -6,9 +6,15 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/user/user.entity';
 import { Permission } from 'src/utils/check-permission';
-import { Repository } from 'typeorm';
+import { ILike, Like, Repository } from 'typeorm';
 import { Job } from './job.entity';
 import { CompanyService } from 'src/company/company.service';
+import {
+  paginate,
+  Pagination,
+  IPaginationOptions,
+} from 'nestjs-typeorm-paginate';
+import { PaginationDto } from './dtos/pagination.dto';
 
 @Injectable()
 export class JobService {
@@ -48,11 +54,19 @@ export class JobService {
     return job;
   }
 
-  async findAll() {
-    const jobList = await this.jobRepository.find({
-      relations: ['user', 'company'],
-    });
-    return jobList;
+  async findAll(options: IPaginationOptions, title?: string, salary?: string) {
+    const { operation, salaryMoney } = this.extractSalary(salary);
+
+    const queryBuilder = this.jobRepository
+      .createQueryBuilder('jobs')
+      .leftJoinAndSelect('jobs.company', 'company')
+      .leftJoinAndSelect('jobs.user', 'user')
+      .andWhere('jobs.title LIKE :title', { title: `%${title}%` })
+      .andWhere(`jobs.salary ${operation} :salaryMoney`, {
+        salaryMoney,
+      });
+
+    return paginate<Job>(queryBuilder, options);
   }
 
   async update(
@@ -106,12 +120,69 @@ export class JobService {
       .getMany();
   }
 
-  async getJobByCompanyName(companyName: string) {
+  // Paginate not use library
+  // async getJobByCompanyName(companyName: string, page, limit) {
+  //   const companyId = await this.companyService.extractIdByName(companyName);
+  //   // return this.jobRepository
+  //   //   .createQueryBuilder('jobs')
+  //   //   .leftJoinAndSelect('jobs.company', 'company')
+  //   //   .where('jobs.company.id = :companyId', { companyId })
+  //   //   .getMany();
+  //   const queryBuilder = this.jobRepository
+  //     .createQueryBuilder('jobs')
+  //     .leftJoinAndSelect('jobs.company', 'company')
+  //     .where('jobs.company.id = :companyId', { companyId });
+
+  //   const skip = (page - 1) * limit;
+
+  //   queryBuilder.skip(skip).take(limit);
+  //   const [jobs, total] = await queryBuilder.getManyAndCount();
+
+  //   return {
+  //     jobs,
+  //     total,
+  //     currentPage: page,
+  //     perPage: limit,
+  //     totalPages: Math.ceil(total / limit),
+  //   };
+  // }
+
+  private extractSalary(salary: string) {
+    const operationMap = {
+      lte: '<=',
+      gte: '>=',
+      lt: '<',
+      gt: '>',
+      e: '=',
+    };
+
+    const [operationText, salaryText] = salary.split(':');
+
+    const operation: string = operationMap[operationText];
+    const salaryMoney: number = +salaryText;
+
+    return { operation, salaryMoney };
+  }
+
+  async paginate(
+    companyName: string,
+    options: IPaginationOptions,
+    title?: string,
+    salary?: string,
+  ) {
     const companyId = await this.companyService.extractIdByName(companyName);
-    return this.jobRepository
+
+    const { operation, salaryMoney } = this.extractSalary(salary);
+
+    const queryBuilder = this.jobRepository
       .createQueryBuilder('jobs')
       .leftJoinAndSelect('jobs.company', 'company')
       .where('jobs.company.id = :companyId', { companyId })
-      .getMany();
+      .andWhere('jobs.title LIKE :title', { title: `%${title}%` })
+      .andWhere(`jobs.salary ${operation} :salaryMoney`, {
+        salaryMoney,
+      });
+
+    return paginate(queryBuilder, options);
   }
 }

@@ -1,18 +1,16 @@
 ### Get all job
-GET http://localhost:3000/api/v1/jobs
+GET http://localhost:3000/api/v1/jobs?limit=10&page=1&salary=gte:4000
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiaHJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MiwibmFtZSI6IkhSIn1dLCJpYXQiOjE2ODkwNzU4NzUsImV4cCI6MTY4OTEzNTg3NX0.qj5_0oYrN7h8IzOelOuNOcWz0Zv9RFZa73JVgTOBdtE
 
-
-### Get all job by user id
+### Get all job was posted by user id (HR)
 GET http://localhost:3000/api/v1/jobs/9/users
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiaHJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MiwibmFtZSI6IkhSIn1dLCJpYXQiOjE2ODkwNzU4NzUsImV4cCI6MTY4OTEzNTg3NX0.qj5_0oYrN7h8IzOelOuNOcWz0Zv9RFZa73JVgTOBdtE
 
 ### Get all job by company name
-GET http://localhost:3000/api/v1/jobs/facebook/companies
+GET http://localhost:3000/api/v1/jobs/facebook/companies?salary=gte:4000
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiaHJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MiwibmFtZSI6IkhSIn1dLCJpYXQiOjE2ODkwNzU4NzUsImV4cCI6MTY4OTEzNTg3NX0.qj5_0oYrN7h8IzOelOuNOcWz0Zv9RFZa73JVgTOBdtE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTU2NjE2LCJleHAiOjE2ODkyMTY2MTZ9.GVJQDvAqtdE2VBexBciDgEN5Gw3NVKuHoMIvYReRMsE
 
 
 ### Create Job
@@ -43,20 +41,20 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiaHJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MiwibmFtZSI6IkhSIn1dLCJpYXQiOjE2ODkwNzU4NzUsImV4cCI6MTY4OTEzNTg3NX0.qj5_0oYrN7h8IzOelOuNOcWz0Zv9RFZa73JVgTOBdtE
 
 ### Update Job
-PUT  http://localhost:3000/api/v1/jobs/17
+PUT  http://localhost:3000/api/v1/jobs/12
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MDg2MjM3LCJleHAiOjE2ODkxNDYyMzd9.yW4D4CrurIFv_lozlaEnnqdQ1hE4xEpIwyO8o-6fmnk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTc2NDM5LCJleHAiOjE2ODkyMzY0Mzl9.3RyCvngVB82zX5ezQrIhu4qiU6OtyX4AnQ0Ru0vxTAw
 
 {
-    "companyName": "google",
-    "title": "Intern Backend",
+    "companyName": "facebook",
+    "title": "Senoir React Native",
     "generalSummary": "Hire dev to create product for customer",
     "description": "We need a developer",
     "skill": "JavaScript, HTML, CSS",
     "endedAt": "2023-07-30",
     "address": "123 Tan Phu",
-    "salary": 1500,
-    "type": "PART_TIME"
+    "salary": 5000,
+    "type": "FULL_TIME"
 }
 
 ### Delete Jobs

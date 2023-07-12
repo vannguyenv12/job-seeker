@@ -1,3 +1,4 @@
+import { Application } from 'src/application/application.entity';
 import { Company } from 'src/company/company.entity';
 import { User } from 'src/user/user.entity';
 import {
@@ -59,4 +60,7 @@ export class Job {
 
   @ManyToOne(() => Company, (company) => company.jobs, { onDelete: 'CASCADE' })
   company: Company;
+
+  @OneToMany(() => Application, (application) => application.job)
+  applications: Application[];
 }

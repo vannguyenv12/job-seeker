@@ -1,13 +1,16 @@
 import {
   Body,
   Controller,
+  DefaultValuePipe,
   Delete,
   Get,
   HttpCode,
   HttpStatus,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
+  Query,
   Request,
   UseGuards,
 } from '@nestjs/common';
@@ -22,9 +25,10 @@ import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserDto } from './dtos/user.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
+import { PaginationDto } from './dtos/paginate.dto';
+import { AuthorizationGuard } from 'src/guards/authorization.guard';
 
 @Controller('api/v1/users')
-@Serialize(UserDto)
 export class UserController {
   constructor(
     private userService: UserService,
@@ -32,34 +36,54 @@ export class UserController {
   ) {}
 
   @Get('/me')
+  @Serialize(UserDto)
   @UseGuards(AuthGuard)
-  getAll(@CurrentUser() user: User) {
+  getMe(@CurrentUser() user: User) {
     return user;
   }
 
   @Post('/register')
+  @Serialize(UserDto)
   register(@Body() user: CreateUserDto) {
     return this.authService.register(user);
   }
 
   @Post('/login')
+  @Serialize(UserDto)
   login(@Body() user: LoginUserDto) {
     return this.authService.login(user.email, user.password);
   }
 
   @Get('/logout')
+  @Serialize(UserDto)
   logout(@Request() req: Express.Request) {
     return this.authService.logout(req);
   }
 
   @Patch('/:id')
+  @Serialize(UserDto)
+  @UseGuards(AuthGuard)
+  @UseGuards(new AuthorizationGuard(['ADMIN']))
   @HttpCode(HttpStatus.CREATED)
   update(@Param('id') id: number, @Body() user: UpdateUserDto) {
     return this.userService.update(id, user);
   }
 
   @Delete('/:id')
+  @UseGuards(AuthGuard)
+  @UseGuards(new AuthorizationGuard(['ADMIN']))
   delete(@Param('id') id: number) {
     return this.userService.delete(id);
+  }
+
+  @Get()
+  @Serialize(PaginationDto)
+  @UseGuards(AuthGuard)
+  @UseGuards(new AuthorizationGuard(['ADMIN']))
+  getAll(
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page = 1,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit = 10,
+  ) {
+    return this.userService.findAll({ page, limit });
   }
 }

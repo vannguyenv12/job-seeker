@@ -1,3 +1,4 @@
+import { Application } from 'src/application/application.entity';
 import { Job } from 'src/job/job.entity';
 import { Role } from 'src/role/role.entity';
 import {
@@ -35,4 +36,7 @@ export class User {
 
   @OneToMany(() => Job, (job) => job.user)
   jobs: Job[];
+
+  @OneToMany(() => Application, (application) => application.user)
+  applications: Application[];
 }

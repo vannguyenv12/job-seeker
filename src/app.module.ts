@@ -11,6 +11,8 @@ import { JobModule } from './job/job.module';
 import { Job } from './job/job.entity';
 import { CompanyModule } from './company/company.module';
 import { Company } from './company/company.entity';
+import { ApplicationModule } from './application/application.module';
+import { Application } from './application/application.entity';
 
 @Module({
   imports: [
@@ -25,7 +27,7 @@ import { Company } from './company/company.entity';
           username: config.get<string>('DB_USERNAME'),
           password: config.get<string>('DB_PASSWORD'),
           database: config.get<string>('DB_NAME'),
-          entities: [User, Role, Job, Company],
+          entities: [User, Role, Job, Company, Application],
           synchronize: true,
         };
       },
@@ -34,6 +36,7 @@ import { Company } from './company/company.entity';
     RoleModule,
     JobModule,
     CompanyModule,
+    ApplicationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

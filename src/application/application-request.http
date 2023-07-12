@@ -1,0 +1,28 @@
+### Create Application
+POST  http://localhost:3000/api/v1/applications
+Content-Type: multipart/form-data;
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTQ5MzI1LCJleHAiOjE2ODkyMDkzMjV9._x_FbbVG1NPqzH1exOzD9GFhobYCoPdDK1iy18ds74w
+
+{
+    "jobId": 14
+}
+
+### Find all Application (Only Admin)
+GET  http://localhost:3000/api/v1/applications
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTc4MjQyLCJleHAiOjE2ODkyMzgyNDJ9.RCfu8SHZ0HERaZbdQyFxcuIhB20cJTAn4s-tPyLTwgI
+
+### Find all Application of user
+GET  http://localhost:3000/api/v1/applications/user/9
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTQ5MzI1LCJleHAiOjE2ODkyMDkzMjV9._x_FbbVG1NPqzH1exOzD9GFhobYCoPdDK1iy18ds74w
+
+### Find all Application of job (for HR)
+GET  http://localhost:3000/api/v1/applications/job/13
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTc4MjQyLCJleHAiOjE2ODkyMzgyNDJ9.RCfu8SHZ0HERaZbdQyFxcuIhB20cJTAn4s-tPyLTwgI
+
+### Delete Application of job (For admin)
+DELETE  http://localhost:3000/api/v1/applications/9/12
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTQ5MzI1LCJleHAiOjE2ODkyMDkzMjV9._x_FbbVG1NPqzH1exOzD9GFhobYCoPdDK1iy18ds74w
