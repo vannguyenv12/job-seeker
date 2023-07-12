@@ -1,9 +1,11 @@
+import { Company } from 'src/company/company.entity';
 import { User } from 'src/user/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -55,5 +57,6 @@ export class Job {
   @ManyToOne(() => User, (user) => user.jobs)
   user: User;
 
-  //   TODO: Map to comany table
+  @ManyToOne(() => Company, (company) => company.jobs, { onDelete: 'CASCADE' })
+  company: Company;
 }

@@ -9,6 +9,11 @@ GET http://localhost:3000/api/v1/jobs/9/users
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiaHJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MiwibmFtZSI6IkhSIn1dLCJpYXQiOjE2ODkwNzU4NzUsImV4cCI6MTY4OTEzNTg3NX0.qj5_0oYrN7h8IzOelOuNOcWz0Zv9RFZa73JVgTOBdtE
 
+### Get all job by company name
+GET http://localhost:3000/api/v1/jobs/facebook/companies
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiaHJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MiwibmFtZSI6IkhSIn1dLCJpYXQiOjE2ODkwNzU4NzUsImV4cCI6MTY4OTEzNTg3NX0.qj5_0oYrN7h8IzOelOuNOcWz0Zv9RFZa73JVgTOBdtE
+
 
 ### Create Job
 POST  http://localhost:3000/api/v1/jobs
@@ -16,7 +21,8 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MDg2MjM3LCJleHAiOjE2ODkxNDYyMzd9.yW4D4CrurIFv_lozlaEnnqdQ1hE4xEpIwyO8o-6fmnk
 
 {
-    "title": "Senior Java",
+    "companyName": "google",
+    "title": "Intern Java",
     "generalSummary": "Hire dev to create product for customer",
     "description": "We need a developer",
     "skill": "Java, HTML, CSS",
@@ -27,7 +33,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsI
 }
 
 ### Get Job by ID
-GET  http://localhost:3000/api/v1/jobs/1
+GET  http://localhost:3000/api/v1/jobs/12
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiaHJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MiwibmFtZSI6IkhSIn1dLCJpYXQiOjE2ODkwNzU4NzUsImV4cCI6MTY4OTEzNTg3NX0.qj5_0oYrN7h8IzOelOuNOcWz0Zv9RFZa73JVgTOBdtE
 
@@ -37,12 +43,13 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiaHJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MiwibmFtZSI6IkhSIn1dLCJpYXQiOjE2ODkwNzU4NzUsImV4cCI6MTY4OTEzNTg3NX0.qj5_0oYrN7h8IzOelOuNOcWz0Zv9RFZa73JVgTOBdtE
 
 ### Update Job
-PUT  http://localhost:3000/api/v1/jobs/3
+PUT  http://localhost:3000/api/v1/jobs/17
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiaHJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MiwibmFtZSI6IkhSIn1dLCJpYXQiOjE2ODkwNzU4NzUsImV4cCI6MTY4OTEzNTg3NX0.qj5_0oYrN7h8IzOelOuNOcWz0Zv9RFZa73JVgTOBdtE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MDg2MjM3LCJleHAiOjE2ODkxNDYyMzd9.yW4D4CrurIFv_lozlaEnnqdQ1hE4xEpIwyO8o-6fmnk
 
 {
-    "title": "Senior ReactJS",
+    "companyName": "google",
+    "title": "Intern Backend",
     "generalSummary": "Hire dev to create product for customer",
     "description": "We need a developer",
     "skill": "JavaScript, HTML, CSS",
@@ -53,6 +60,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsI
 }
 
 ### Delete Jobs
-DELETE  http://localhost:3000/api/v1/jobs/7
+DELETE  http://localhost:3000/api/v1/jobs/17
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiaHJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MiwibmFtZSI6IkhSIn1dLCJpYXQiOjE2ODkwODQyMjMsImV4cCI6MTY4OTE0NDIyM30.jEx2dxC1zGi_u6sxaouKJvTGlAIyYb0nKlsVR15NPiI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MDg2MjM3LCJleHAiOjE2ODkxNDYyMzd9.yW4D4CrurIFv_lozlaEnnqdQ1hE4xEpIwyO8o-6fmnk
+

@@ -29,4 +29,8 @@ export class JobDto {
   @Transform(({ obj }) => obj.user?.id)
   @Expose()
   userId: number;
+
+  @Transform(({ obj }) => obj.company?.id)
+  @Expose()
+  companyId: number;
 }

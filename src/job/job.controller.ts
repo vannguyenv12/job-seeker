@@ -29,7 +29,11 @@ export class JobController {
   @Post()
   @UseGuards(new AuthorizationGuard(['HR']))
   create(@Body() requestBody: CreateJobDto, @CurrentUser() CurrentUser: User) {
-    return this.jobService.create(requestBody, CurrentUser);
+    return this.jobService.create(
+      requestBody,
+      CurrentUser,
+      requestBody.companyName,
+    );
   }
 
   @Get('/:id')
@@ -49,7 +53,12 @@ export class JobController {
     @Body() requestBody: UpdateJobDto,
     @CurrentUser() currentUser,
   ) {
-    return this.jobService.update(id, requestBody, currentUser);
+    return this.jobService.update(
+      id,
+      requestBody,
+      currentUser,
+      requestBody.companyName,
+    );
   }
 
   @Delete('/:id')
@@ -62,5 +71,10 @@ export class JobController {
   @UseGuards(new AuthorizationGuard(['ADMIN']))
   getJobsByUserId(@Param('userId') userId: number) {
     return this.jobService.getJobsByUserId(userId);
+  }
+
+  @Get('/:companyName/companies')
+  getJobsByCompanyName(@Param('companyName') companyName: string) {
+    return this.jobService.getJobByCompanyName(companyName);
   }
 }

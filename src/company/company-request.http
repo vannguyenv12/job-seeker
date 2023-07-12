@@ -1,0 +1,38 @@
+### Get all company
+GET http://localhost:3000/api/v1/companies
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTI0MTYzLCJleHAiOjE2ODkxODQxNjN9.PHu2kfUAMCmi3MlRvrNa4uigvaSxXqzmKGkhmL_PHx4
+
+
+### Get company
+GET http://localhost:3000/api/v1/companies/1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTI0MTYzLCJleHAiOjE2ODkxODQxNjN9.PHu2kfUAMCmi3MlRvrNa4uigvaSxXqzmKGkhmL_PHx4
+
+
+### Create Company
+POST  http://localhost:3000/api/v1/companies
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTI0MTYzLCJleHAiOjE2ODkxODQxNjN9.PHu2kfUAMCmi3MlRvrNa4uigvaSxXqzmKGkhmL_PHx4
+
+{
+    "name": "Facebook"
+}
+
+
+### Update Company
+PUT  http://localhost:3000/api/v1/companies/1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTI0MTYzLCJleHAiOjE2ODkxODQxNjN9.PHu2kfUAMCmi3MlRvrNa4uigvaSxXqzmKGkhmL_PHx4
+
+{
+    "name": "Facebook"
+}
+
+### Delete company
+DELETE  http://localhost:3000/api/v1/companies/4
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTI0MTYzLCJleHAiOjE2ODkxODQxNjN9.PHu2kfUAMCmi3MlRvrNa4uigvaSxXqzmKGkhmL_PHx4
+
+
+

@@ -36,4 +36,8 @@ export class UpdateJobDto {
   @IsString()
   @IsEnum(JOB_TYPE)
   type: JOB_TYPE;
+
+  @IsString()
+  @IsNotEmpty()
+  companyName: string;
 }

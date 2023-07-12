@@ -9,6 +9,8 @@ import { Role } from './role/role.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JobModule } from './job/job.module';
 import { Job } from './job/job.entity';
+import { CompanyModule } from './company/company.module';
+import { Company } from './company/company.entity';
 
 @Module({
   imports: [
@@ -23,7 +25,7 @@ import { Job } from './job/job.entity';
           username: config.get<string>('DB_USERNAME'),
           password: config.get<string>('DB_PASSWORD'),
           database: config.get<string>('DB_NAME'),
-          entities: [User, Role, Job],
+          entities: [User, Role, Job, Company],
           synchronize: true,
         };
       },
@@ -31,6 +33,7 @@ import { Job } from './job/job.entity';
     UserModule,
     RoleModule,
     JobModule,
+    CompanyModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -41,5 +41,9 @@ export class CreateJobDto {
   @IsEnum(JOB_TYPE)
   type: JOB_TYPE;
 
-  userId: number;
+  //userId: number;
+
+  @IsString()
+  @IsNotEmpty()
+  companyName: string;
 }
