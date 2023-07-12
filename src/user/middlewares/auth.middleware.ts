@@ -43,7 +43,6 @@ export class AuthMiddleware implements NestMiddleware {
     }
     // attach to request object
     req.currentUser = user;
-    console.log(req.currentUser);
     next();
   }
 }

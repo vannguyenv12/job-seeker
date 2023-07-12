@@ -8,7 +8,7 @@ POST  http://localhost:3000/api/v1/users/register
 content-type: application/json
 
 {
-    "email": "test2@test.com",
+    "email": "van@test.com",
     "password": "test1234",
     "firstName": "Van",
     "lastName": "Nguyen"
@@ -19,7 +19,7 @@ POST  http://localhost:3000/api/v1/users/login
 content-type: application/json
 
 {
-    "email": "test2@test.com",
+    "email": "van@test.com",
     "password": "test1234"
 }
 
@@ -30,7 +30,7 @@ content-type: application/json
 ### Get current user
 GET  http://localhost:3000/api/v1/users/me
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoidGVzdDJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MywibmFtZSI6IkpPQl9TRUVLRVIifV0sImlhdCI6MTY4OTAwNzMxMywiZXhwIjoxNjg5MDY3MzEzfQ.cptpZke0iUfmG9l_aVE8hKD-WVvrK9GItdJy2mqOySg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiaHJAdGVzdC5jb20iLCJyb2xlIjpbeyJpZCI6MiwibmFtZSI6IkhSIn1dLCJpYXQiOjE2ODkwNzU4NzUsImV4cCI6MTY4OTEzNTg3NX0.qj5_0oYrN7h8IzOelOuNOcWz0Zv9RFZa73JVgTOBdtE
 
 ### Update user
 PATCH  http://localhost:3000/api/v1/users/1

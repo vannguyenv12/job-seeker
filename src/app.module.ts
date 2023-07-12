@@ -7,6 +7,8 @@ import { User } from './user/user.entity';
 import { RoleModule } from './role/role.module';
 import { Role } from './role/role.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JobModule } from './job/job.module';
+import { Job } from './job/job.entity';
 
 @Module({
   imports: [
@@ -21,13 +23,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           username: config.get<string>('DB_USERNAME'),
           password: config.get<string>('DB_PASSWORD'),
           database: config.get<string>('DB_NAME'),
-          entities: [User, Role],
+          entities: [User, Role, Job],
           synchronize: true,
         };
       },
     }),
     UserModule,
     RoleModule,
+    JobModule,
   ],
   controllers: [AppController],
   providers: [AppService],

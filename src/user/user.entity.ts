@@ -1,3 +1,4 @@
+import { Job } from 'src/job/job.entity';
 import { Role } from 'src/role/role.entity';
 import {
   Entity,
@@ -5,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
   JoinTable,
+  OneToMany,
 } from 'typeorm';
 
 @Entity('users')
@@ -30,4 +32,7 @@ export class User {
   @ManyToMany(() => Role)
   @JoinTable({ name: 'users_roles' })
   roles: Role[];
+
+  @OneToMany(() => Job, (job) => job.user)
+  jobs: Job[];
 }
