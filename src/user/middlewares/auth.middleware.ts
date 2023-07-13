@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   NestMiddleware,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { AuthService } from '../auth.service';
@@ -32,17 +33,28 @@ export class AuthMiddleware implements NestMiddleware {
     }
     const token = authHeader.split(' ')[1];
 
-    const payload = await this.jwtService.verify(token, {
-      secret: 'super-secret-jwt',
-    });
+    try {
+      const payload = await this.jwtService.verify(token, {
+        secret: process.env.JWT_SECRET,
+      });
 
-    const { email } = payload;
-    const user = await this.userService.findByEmail(email);
-    if (!user) {
-      throw new BadRequestException('Token is invalid, please login again!');
+      console.log(payload.exp, Date.now() / 1000);
+
+      const { email } = payload;
+      const user = await this.userService.findByEmail(email);
+      if (!user) {
+        throw new UnauthorizedException(
+          'Token is invalid, please login again!',
+        );
+      }
+      // attach to request object
+      req.currentUser = user;
+      next();
+    } catch (error) {
+      console.log('error from auth middleware: ', error);
+      throw new UnauthorizedException(
+        'Token is invalid or expired, please login again',
+      );
     }
-    // attach to request object
-    req.currentUser = user;
-    next();
   }
 }
