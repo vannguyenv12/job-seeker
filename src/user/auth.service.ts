@@ -7,6 +7,9 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { Request } from 'express';
 import { RoleService } from 'src/role/role.service';
+import { SkillService } from 'src/skill/skill.service';
+import { Skill } from 'src/skill/skill.entity';
+import { CreateUserDto } from './dtos/create-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -15,9 +18,10 @@ export class AuthService {
     private userService: UserService,
     private jwtService: JwtService,
     private roleService: RoleService,
+    private skillService: SkillService,
   ) {}
 
-  async register(body: Partial<User>) {
+  async register(body: Partial<User> | CreateUserDto) {
     const hashedPassword = await bcrypt.hash(body.password, 10);
     body.password = hashedPassword;
 
@@ -26,10 +30,27 @@ export class AuthService {
       throw new BadRequestException('Email adready exist');
     }
 
-    const user = this.userRepository.create(body);
+    const user = this.userRepository.create(body as User);
     const role = await this.roleService.findByName('JOB_SEEKER');
     user.roles = [role];
 
+    // Create skill: ["HTML", "CSS", "JavaScript"]
+    let skill: Skill;
+    const skillList: Skill[] = [];
+    for (const s of body.skills as [string]) {
+      const skillByName = await this.skillService.findByName(s);
+      if (!skillByName) {
+        skill = await this.skillService.create(s);
+        skillList.push(skill);
+      }
+      {
+        skill = skillByName;
+        skillList.push(skill);
+      }
+    }
+    user.skills = [...skillList];
+
+    // Access token
     const payload = { sub: user.id, email: user.email, role: user.roles };
     const accessToken = await this.jwtService.signAsync(payload);
     const savedUser = await this.userRepository.save(user);

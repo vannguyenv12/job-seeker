@@ -38,8 +38,6 @@ export class AuthMiddleware implements NestMiddleware {
         secret: process.env.JWT_SECRET,
       });
 
-      console.log(payload.exp, Date.now() / 1000);
-
       const { email } = payload;
       const user = await this.userService.findByEmail(email);
       if (!user) {

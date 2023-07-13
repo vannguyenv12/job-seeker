@@ -1,6 +1,7 @@
 import { Application } from 'src/application/application.entity';
 import { Job } from 'src/job/job.entity';
 import { Role } from 'src/role/role.entity';
+import { Skill } from 'src/skill/skill.entity';
 import {
   Entity,
   Column,
@@ -39,4 +40,8 @@ export class User {
 
   @OneToMany(() => Application, (application) => application.user)
   applications: Application[];
+
+  @ManyToMany(() => Skill)
+  @JoinTable({ name: 'users_skills' })
+  skills: Skill[];
 }

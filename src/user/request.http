@@ -10,10 +10,11 @@ POST  http://localhost:3000/api/v1/users/register
 content-type: application/json
 
 {
-    "email": "khang@test.com",
+    "email": "testskill2@test.com",
     "password": "test1234",
-    "firstName": "khang",
-    "lastName": "Nguyen"
+    "firstName": "testskill",
+    "lastName": "Nguyen",
+    "skills": ["HTML", "CSS", "JavaScript"]
 }
 
 ### Login user
@@ -32,22 +33,24 @@ content-type: application/json
 ### Get current user
 GET  http://localhost:3000/api/v1/users/me
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtoYW5nQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjMsIm5hbWUiOiJKT0JfU0VFS0VSIn1dLCJpYXQiOjE2ODkxNzc5NjksImV4cCI6MTY4OTIzNzk2OX0.seRFy2pZmQ-uv4Xi_LwxAaoh4GL8E-UjGZx_zWQWcmI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyLCJlbWFpbCI6InRlc3Rza2lsbEB0ZXN0LmNvbSIsInJvbGUiOlt7ImlkIjozLCJuYW1lIjoiSk9CX1NFRUtFUiJ9XSwiaWF0IjoxNjg5MjM4NjI5LCJleHAiOjE2ODkzMjUwMjl9._FSB0bUoUHEh3dza-E1m7-J9Bw9w8XIwRaQBqRDq-7A
 
-### Update user
-PATCH  http://localhost:3000/api/v1/users/1
+### Update user (firstname, lastname, skills)
+PATCH  http://localhost:3000/api/v1/users/12
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjEsIm5hbWUiOiJBRE1JTiJ9XSwiaWF0IjoxNjg5MjM4NzgyLCJleHAiOjE2ODkzMjUxODJ9.NacFHIFRwMGDaFahVV-3QHiYzJN4E4cHFAWDnEBmIAQ
 
 {
-    "firstName": "Chinh",
-    "lastName": "Tuyet"
+    "firstName": "Test",
+    "lastName": "Tuyet",
+    "skills": ["HTML", "CSS", "Reactjs"]
 }
 
 ### Delete user
 DELETE  http://localhost:3000/api/v1/users/5
 content-type: application/json
 
-### Test user
-GET  http://localhost:3000/api/v1/users
+### Get all user
+GET  http://localhost:3000/api/v1/users?skill=HTML
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjIsIm5hbWUiOiJIUiJ9XSwiaWF0IjoxNjg5MTc3NzcyLCJleHAiOjE2ODkyMzc3NzJ9.UQqKFH9wu5TJzknF4hNiDqvaCkyznRnUBazaBDiTu60
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImVtYWlsIjoidmFuQHRlc3QuY29tIiwicm9sZSI6W3siaWQiOjEsIm5hbWUiOiJBRE1JTiJ9XSwiaWF0IjoxNjg5MjM3OTY1LCJleHAiOjE2ODkzMjQzNjV9.LPCoLmnh3MDLm_1OB2D5m96zIbTaODXq2zFFWmTCNyg

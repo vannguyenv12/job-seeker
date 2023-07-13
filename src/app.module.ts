@@ -13,6 +13,8 @@ import { CompanyModule } from './company/company.module';
 import { Company } from './company/company.entity';
 import { ApplicationModule } from './application/application.module';
 import { Application } from './application/application.entity';
+import { SkillModule } from './skill/skill.module';
+import { Skill } from './skill/skill.entity';
 
 @Module({
   imports: [
@@ -27,7 +29,7 @@ import { Application } from './application/application.entity';
           username: config.get<string>('DB_USERNAME'),
           password: config.get<string>('DB_PASSWORD'),
           database: config.get<string>('DB_NAME'),
-          entities: [User, Role, Job, Company, Application],
+          entities: [User, Role, Job, Company, Application, Skill],
           synchronize: true,
         };
       },
@@ -37,6 +39,7 @@ import { Application } from './application/application.entity';
     JobModule,
     CompanyModule,
     ApplicationModule,
+    SkillModule,
   ],
   controllers: [AppController],
   providers: [AppService],

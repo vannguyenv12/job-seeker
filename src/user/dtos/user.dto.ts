@@ -1,4 +1,4 @@
-import { Expose } from 'class-transformer';
+import { Expose, Transform } from 'class-transformer';
 
 export class UserDto {
   @Expose()
@@ -7,6 +7,11 @@ export class UserDto {
   firstName: string;
   @Expose()
   lastName: string;
+
+  @Expose()
+  @Transform(({ obj }) => obj?.skills?.map((skill) => skill.name))
+  skills: [string];
+
   @Expose()
   accessToken: string;
 }

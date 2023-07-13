@@ -55,6 +55,7 @@ export class UserController {
   }
 
   @Get('/logout')
+  @UseGuards(AuthGuard)
   @Serialize(UserDto)
   logout(@Request() req: Express.Request) {
     return this.authService.logout(req);
@@ -63,10 +64,13 @@ export class UserController {
   @Patch('/:id')
   @Serialize(UserDto)
   @UseGuards(AuthGuard)
-  @UseGuards(new AuthorizationGuard(['ADMIN']))
   @HttpCode(HttpStatus.CREATED)
-  update(@Param('id') id: number, @Body() user: UpdateUserDto) {
-    return this.userService.update(id, user);
+  update(
+    @Param('id') id: number,
+    @Body() user: UpdateUserDto,
+    @CurrentUser() currentUser,
+  ) {
+    return this.userService.update(id, user, currentUser);
   }
 
   @Delete('/:id')
@@ -83,7 +87,9 @@ export class UserController {
   getAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit = 10,
+    @Query('skill', new DefaultValuePipe('')) skill = '',
   ) {
-    return this.userService.findAll({ page, limit });
+    // return this.userService.findAll({ page, limit });
+    return this.userService.findAll({ page, limit }, skill);
   }
 }

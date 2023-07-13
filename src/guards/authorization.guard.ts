@@ -1,4 +1,9 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+} from '@nestjs/common';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -12,7 +17,9 @@ export class AuthorizationGuard implements CanActivate {
 
     for (const role of request.currentUser.roles) {
       if (!this.roles.includes(role.name)) {
-        return false;
+        throw new ForbiddenException(
+          'User is not logged or do not have a permission',
+        );
       }
     }
 

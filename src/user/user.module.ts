@@ -8,6 +8,7 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 import { AuthMiddleware } from './middlewares/auth.middleware';
 import { RoleModule } from 'src/role/role.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { SkillModule } from 'src/skill/skill.module';
 
 @Module({
   controllers: [UserController],
@@ -25,6 +26,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       },
     }),
     RoleModule,
+    SkillModule,
   ],
 })
 export class UserModule {
