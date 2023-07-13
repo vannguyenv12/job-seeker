@@ -51,7 +51,7 @@ export class ApplicationController {
     @CurrentUser() currentUser: User,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    return this.applicationService.create(requestBody.jobId, currentUser);
+    return this.applicationService.create(requestBody.jobId, currentUser, file);
   }
 
   @Get()

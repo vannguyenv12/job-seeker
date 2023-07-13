@@ -15,10 +15,26 @@ import { ApplicationModule } from './application/application.module';
 import { Application } from './application/application.entity';
 import { SkillModule } from './skill/skill.module';
 import { Skill } from './skill/skill.entity';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    MailerModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => {
+        return {
+          transport: {
+            host: config.get<string>('MAIL_HOST'),
+            port: +config.get<string>('MAIL_PORT'),
+            auth: {
+              user: config.get<string>('MAIL_USER'),
+              pass: config.get<string>('MAIL_PASS'),
+            },
+          },
+        };
+      },
+    }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
